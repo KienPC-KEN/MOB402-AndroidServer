@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <title>List mongoose</title>
+
+</head>
+
+<body>
+    <div class=" bg-light mt-4 mx-5">
+        <div class="text-center fw-bold fs-4 mt-1">
+            <p>Danh Sách Sản Phẩm</p>
+        </div>
+        <table class="table table-bordered ">
+            <thead>
+                <tr class="text-center">
+                    <th scope="col">Tiêu đề</th>
+                    <th scope="col">Năm sáng tác</th>
+                    <th scope="col">Tác giả</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                {{#each arr}}
+                <tr class="text-center">
+
+                    <td>{{this.tieude}}</td>
+                    <td>{{this.nam}}</td>
+                    <td>{{this.tacgia}}</td>
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <form action="/list/getIdEdit" method="post">
+                                <button type="submit" class="fas fa-edit btn btn-link text-decoration-none"><input
+                                        type="hidden" name="id" value="{{this._id}}"></button>
+                            </form>
+
+                            <button type="button" class="fas fa-trash btn btn-link text-decoration-none"
+                                data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="{{this._id}}"
+                                data-bs-whatever2="{{this.tieude}}"></button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Bạn có muốn xóa</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <p class="modal-body" style="font-size: large;">
+
+
+                                        </p>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                            <form action="/list/getIdDelete" method="post">
+
+                                                <button type="submit" class="btn btn-primary"> <input
+                                                        style="display: none;" type="text" name="id">
+                                                    Delete</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <form action="/list/getIdDetail" method="post">
+                                <a type="submit" class="fas fa-plus btn btn-link text-decoration-none" href="/add"></a>
+                            </form>
+                        </div>
+
+
+                    </td>
+                </tr>
+                {{/each}}
+
+            </tbody>
+        </table>
+    </div>
+    <script>const exampleModal = document.getElementById('exampleModal')
+        exampleModal.addEventListener('show.bs.modal', event => {
+            // Button that triggered the modal
+            const button = event.relatedTarget
+            // Extract info from data-bs-* attributes
+            const recipient = button.getAttribute('data-bs-whatever')
+            const recipient2 = button.getAttribute('data-bs-whatever2')
+            // If necessary, you could initiate an Ajax request here
+            // and then do the updating in a callback.
+            //
+            // Update the modal's content.
+            const modalTitle = exampleModal.querySelector('.modal-title')
+            const modalBody = exampleModal.querySelector('.modal-body')
+            const modalFooterInput = exampleModal.querySelector('.modal-footer input')
+
+            modalTitle.textContent = `Bạn có chắc chắn muốn xóa?`
+            modalBody.textContent = `Tiêu đề xóa: ${recipient2}`
+            modalFooterInput.value = recipient
+        })</script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
