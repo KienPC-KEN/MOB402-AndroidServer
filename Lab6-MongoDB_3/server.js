@@ -26,6 +26,8 @@ app.get('/add', async (req, res) => {
         layout: 'index',
     });
 })
+
+
 app.get('/', async (req, res) => {
     await mongoose.connect(uri).then(console.log('Ket noi DB thanh cong!'));
 
@@ -57,7 +59,7 @@ app.post('/list/getIdDelete', async (req, res) => {
     const id = req.body.id;
     idDelete = id;
     console.log("id lấy: " + idDelete);
-    btModel.deleteOne({ _id: idDelete })
+    await btModel.deleteOne({ _id: idDelete })
         .then(function () {
             console.log("Document deleted");
             res.redirect('/');
@@ -70,11 +72,13 @@ app.post('/list/getIdDelete', async (req, res) => {
 
 app.post('/add', async (req, res) => {
     await mongoose.connect(uri).then(console.log('Ket noi DB thanh cong!'));
-
+    let objBT = await btModel.find().lean();
+   
     const { txtTieuDe, txtNam, txtTacGia } = req.body;
     console.log(req.body);
-
+    const result =  objBT[objBT.length - 1].id + 1;
     const baiTho = new btModel({
+        id: result,
         tieude: txtTieuDe,
         nam: txtNam,
         tacgia: txtTacGia,

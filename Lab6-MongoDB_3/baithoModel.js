@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const BaithoSchema = new mongoose.Schema({
+    id:{
+        type: 'Number',
+        default: 0
+    },
     tieude: {
         type: String,
         require: true
