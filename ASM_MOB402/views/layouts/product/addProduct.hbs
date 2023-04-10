@@ -1,0 +1,52 @@
+{{!-- content --}}
+<div class="col-sm-9 bg-light mt-4 mx-4">
+    <h4 class="text-uppercase p-3 mt-4 text-center">Thêm sản phẩm</h4>
+    <p class="px-3 ">Vui lòng điền vào form</p>
+    {{#if check}}
+    <span style="color: red;">{{check}}</span>
+    {{/if}}
+    <hr class="mx-2">
+    <form action="/product/addProduct" method="POST" enctype="multipart/form-data">
+        <div class="form-floating mb-3 mt-3">
+            <input type="text" class="form-control" id="maSP" placeholder="Enter mã sản phẩm" name="maSP">
+            <label for="maSP">Mã sản phẩm</label>
+        </div>
+        <div class="form-floating mt-3 mb-3">
+            <input type="text" class="form-control" id="tenSP" placeholder="Enter tên sản phẩm" name="tenSP">
+            <label for="tenSP">Tên sản phẩm</label>
+        </div>
+        <div class="form-floating mt-3 mb-3">
+            <input type="text" class="form-control" id="donGia" placeholder="Enter đơn giá" name="donGia">
+            <label for="donGia">Đơn giá</label>
+        </div>
+        <div class="form-floating mb-3 mt-3">
+            <!--   PHOTO-->
+            <input onchange="loadImage(event)" type="file" name="myImage" accept="image/*" />
+            <img  id="image" alt="Lỗi" style="width: 50px; height: 50px;">
+            <script>
+                var loadImage = function (event) {
+                    var img = document.getElementById("image");
+                    img.src = URL.createObjectURL(event.target.files[0]);
+                };
+            </script>
+        </div>
+        <div class="form-floating mt-3 mb-3">
+            <input type="text" class="form-control" id="mauSac" placeholder="Enter màu sắc" name="mauSac">
+            <label for="mauSac">Màu sắc</label>
+        </div>
+        {{!-- select item loaisp --}}
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">Loại sản phẩm</label>
+            <select class="form-select" name="selectLoaiSP">
+                <option>Chọn loại sản phẩm...</option>
+                <option value="Quần">Quần</option>
+                <option value="Áo">Áo</option>
+                <option value="Áo khoác">Áo khoác</option>
+            </select>
+        </div>
+        <div class="d-grid gap-2">
+            <button class="btn btn-primary" type="submit">Thêm sản phẩm</button>
+        </div>
+
+    </form>
+</div>

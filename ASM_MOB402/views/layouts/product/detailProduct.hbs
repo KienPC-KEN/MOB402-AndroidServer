@@ -1,0 +1,45 @@
+<div class="container bg-light text-center" style="width: 700px;">
+    <h4 class="text-uppercase p-3 mt-4 text-center">Thông tin sản phẩm</h4>
+    <hr class="mx-2">
+    {{#each arr}}
+    <div class="form-floating mb-3 mt-3">
+        <!--   PHOTO-->
+        <input type="image" src="{{this.hinhanh}}" disabled id="avatar" placeholder="Enter avatar" name="avatar"
+            style="width: 150px; height: 150px; margin-top: 16px; ">
+
+    </div>
+    <div class="form-floating mb-3 mt-3">
+        <input type="number" disabled class="form-control" id="id" placeholder="Enter id" name="id"
+            value="{{this.stt}}">
+        <label for="id">Id</label>
+    </div>
+    <div class="form-floating mb-3 mt-3">
+        <input type="text" disabled class="form-control" id="maSP" placeholder="Enter maSP" name="maSP"
+            value="{{this.masp}}">
+        <label for="name">Mã sản phẩm</label>
+    </div>
+    <div class="form-floating mb-3 mt-3">
+        <input type="email" disabled class="form-control" id="tenSP" placeholder="Enter tenSP" name="tenSP"
+            value="{{this.tensp}}">
+        <label for="email">Tên sản phẩm</label>
+    </div>
+    <div class="form-floating mt-3 mb-3">
+        <input type="text" disabled class="form-control" id="donGia" placeholder="Enter donGia" name="donGia"
+            value="{{this.dongia}}">
+        <label for="exampleInputPassword1">Đơn giá</label>
+    </div>
+    <div class="form-floating mt-3 mb-3">
+        <input type="text" disabled class="form-control" id="mauSac" placeholder="Enter password" name="mauSac"
+            value="{{this.mausac}}">
+        <label for="exampleInputPassword1">Màu sắc</label>
+    </div>
+    <div class="form-floating mt-3 mb-3">
+        <input type="text" disabled class="form-control" id="mauSac" placeholder="Enter password" name="mauSac"
+            value="{{this.loaisp}}">
+        <label for="exampleInputPassword1">Loại sản phẩm</label>
+    </div>
+    {{/each}}
+    <div class="d-grid gap-2">
+        <a class="btn btn-primary" href="/product/" type="submit">Đóng</a>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="container bg-light text-center" style="width: 700px;">
+    <h4 class="text-uppercase p-3 mt-4 text-center">Thông tin người dùng</h4>
+    <hr class="mx-2">
+    {{#each arr}}
+    <div class="form-floating mb-3 mt-3">
+        <!--   PHOTO-->
+        <input type="image" src="{{this.avatar}}" disabled id="avatar" placeholder="Enter avatar" name="avatar"
+            style="width: 150px; height: 150px; margin-top: 16px; ">
+
+    </div>
+    <div class="form-floating mb-3 mt-3">
+        <input type="number" disabled class="form-control" id="id" placeholder="Enter id" name="id"
+            value="{{this.stt}}">
+        <label for="id">#</label>
+    </div>
+    <div class="form-floating mb-3 mt-3">
+        <input type="text" disabled class="form-control" id="name" placeholder="Enter name" name="name"
+            value="{{this.name}}">
+        <label for="name">Name</label>
+    </div>
+    <div class="form-floating mb-3 mt-3">
+        <input type="email" disabled class="form-control" id="email" placeholder="Enter email" name="email"
+            value="{{this.email}}">
+        <label for="email">Email</label>
+    </div>
+    <div class="form-floating mt-3 mb-3">
+        <input type="text" disabled class="form-control" id="pwd" placeholder="Enter password" name="pass"
+            value="{{this.password}}">
+        <label for="exampleInputPassword1">Password</label>
+    </div>
+    <div class="form-floating mt-3 mb-3">
+        <input type="text" disabled class="form-control" id="mauSac" placeholder="Enter password" name="mauSac"
+            value="{{this.pq}}">
+        <label for="exampleInputPassword1">Loại tài khoản</label>
+    </div>
+    {{/each}}
+    <div class="d-grid gap-2">
+        <a class="btn btn-primary" href="/user/" type="submit">Đóng</a>
+    </div>
+</div>

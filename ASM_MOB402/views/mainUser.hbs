@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container-fluid" style="background-color: gainsboro;">
+        <div class="d-flex bd-highlight ">
+            <div class="d-flex">
+                <a class="nav-link me-2" href="/product/"
+                    style="margin-left: 16px; display: flex; align-items: center;">
+                    <img src="http://localhost:3000/images/logo.png" style="width: 100%; height: 50px;">
+                </a>
+
+            </div>
+            <div class="ms-auto bd-highlight">
+                <nav class="navbar navbar-expand-sm ">
+                    <div class="container-fluid">
+                        <ul class="navbar-nav">
+                            {{!-- Tìm kiếm --}}
+                            <form class="d-flex mt-3 mb-3" method="post" action="/user/search">
+                                <div class="input-group mx-5">
+                                    <input type="text" class="form-control mx-1" placeholder="Search" name="search">
+                                    {{!-- select item loaisp --}}                     
+                                        <select class="form-select mx-1" name="searchLoai">
+                                            <option value="">Chọn loại tài khoản...</option>
+                                            <option value="Admin">Admin</option>
+                                            <option value="Nhân viên">Nhân viên</option>
+                                        </select>
+                                    <button class="btn btn-success" type="submit"><i class="fa fa-search"></i></button>
+                                </div>
+                            </form>
+                            <li class="nav-item dropdown mt-3 mb-3">
+                                <a class="nav-link d-flex align-items-center" href="#" data-bs-toggle="dropdown">
+                                    <img src="/images/ic_menu.png" alt="" style="width: 30px; height: 30px;">
+                                </a>
+                                <ul class="dropdown-menu text-center dropdown-menu-sm-end">
+                                    <li><a class="dropdown-item" href="/user/deltailUserLog"><i
+                                                class="fas fa-user me-2"></i>Thông
+                                            tin</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="/user/updateUserLog"><i
+                                                class="fas fa-edit me-2"></i>Sửa thông tin</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="/user/logout"><i
+                                                class="fas fa-sign-out-alt me-2"></i>Đăng
+                                            xuất</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2 bg-dark bg-gradient px-4 mx-2" style="height: 640px;">
+            <div class="text-center ">
+                <div class=" d-flex m-3" style="margin-left: 20px;">
+                    <img src="{{avatar}}" style="width: 35px; height: 35px;" class="mx-1">
+                    <div style="margin-left: 5px; color: white;">
+                        <p class="m-0">{{name}}</p>
+                        <p class="m-0">{{pq}}</p>
+                    </div>
+                </div>
+                <label for="" class="fw-bold fs-5" style="color: white;">Chức Năng</label>
+            </div>
+            <nav class="navbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/product/" style="color: white;"><i class="fas fa-home"></i>Trang
+                            chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/product/addProduct" style="color: white;"><i class="fas fa-plus"></i>
+                            Thêm
+                            Sản Phẩm</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" type="submit" href="/user/" style="color: white;"><i
+                                class="fas fa-user"></i> Quản lý
+                            tài
+                            khoản</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" style="color: white;"><i class="fas fa-credit-card"></i>
+                            Thanh toán hóa đơn</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        {{{body}}}
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

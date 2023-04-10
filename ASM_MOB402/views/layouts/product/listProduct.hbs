@@ -1,0 +1,112 @@
+<div class="col-sm-9 bg-light mt-4 mx-4">
+    <div class="text-center fw-bold fs-4 mt-1">
+        <p>Danh Sách Sản Phẩm</p>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr class="text-center">
+                <th scope="col">#</th>
+                <th scope="col">Mã sản phẩm</th>
+                <th scope="col">Tên sản phẩm</th>
+                <th scope="col">Đơn giá</th>
+                <th scope="col">Hình ảnh</th>
+                <th scope="col">Màu sắc</th>
+                <th scope="col">Loại sản phẩm</th>
+                <th scope="col" class="text-center">Action</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            {{#each arr}}
+            <tr class="text-center">
+                <th scope="row">{{this.stt}}</th>
+                <td>{{this.masp}}</td>
+                <td>{{this.tensp}}</td>
+                <td>{{this.dongia}}</td>
+                <td><img src="{{this.hinhanh}}" class="mt-3" style="width: 50px; height: 50px;"> </td>
+                <td>{{this.mausac}}</td>
+                <td>{{this.loaisp}}</td>
+                <td class="text-center">
+                    <form action="/product/getIdEditP" method="post">
+                        <button type="submit" class="fas fa-edit btn btn-link text-decoration-none"><input type="hidden"
+                                name="id" value="{{this._id}}"></button>
+                    </form>
+                    {{!-- Xóa --}}
+                    <button type="button" class="fas fa-trash btn btn-link text-decoration-none" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal" data-bs-whatever="{{this._id}}"
+                        data-bs-whatever2="{{this.tensp}}"></button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Bạn có muốn xóa</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <p class="modal-body" style="font-size: large;">
+
+
+                                </p>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <form action="/product/deleteProduct" method="post">
+
+                                        <button type="submit" class="btn btn-danger"> <input style="display: none;"
+                                                type="text" name="id">
+                                            Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <form action="/product/getIdDetailP" method="post">
+                        <button type="submit" class="fas fa-eye btn btn-link text-decoration-none"><input type="hidden"
+                                name="id" value="{{this._id}}"></button>
+                    </form>
+
+                </td>
+            </tr>
+            {{/each}}
+
+        </tbody>
+    </table>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-end mx-5">
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<script>const exampleModal = document.getElementById('exampleModal')
+    exampleModal.addEventListener('show.bs.modal', event => {
+        // Button that triggered the modal
+        const button = event.relatedTarget
+        // Extract info from data-bs-* attributes
+        const recipient = button.getAttribute('data-bs-whatever')
+        const recipient2 = button.getAttribute('data-bs-whatever2')
+        // If necessary, you could initiate an Ajax request here
+        // and then do the updating in a callback.
+        //
+        // Update the modal's content.
+        const modalTitle = exampleModal.querySelector('.modal-title')
+        const modalBody = exampleModal.querySelector('.modal-body')
+        const modalFooterInput = exampleModal.querySelector('.modal-footer input')
+
+        modalTitle.textContent = `Bạn có chắc chắn muốn xóa?`
+        modalBody.textContent = `Sản phẩm xóa: ${recipient2}`
+        modalFooterInput.value = recipient
+    })</script>
